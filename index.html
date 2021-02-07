@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bored Api Activity</title>
+</head>
+<body>
+    <h1 style="text-align: center;">Your Task is: <span id="activity"></span> </h1>
+    
+    <script>
+        function getActivity(){
+            fetch("http://www.boredapi.com/api/activity/")
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById("activity").innerText = data.activity;
+                let randomColor = Math.floor(Math.random()*16777215).toString(16);
+                document.body.style.backgroundColor = "#"+randomColor;
+                //console.log(randomColor);
+            })
+        }
+        getActivity();
+        setInterval(() => {
+            getActivity();
+        }, 5000);
+    </script>
+</body>
+</html>
